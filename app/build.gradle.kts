@@ -63,13 +63,20 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
     kapt(libs.hilt.android.compiler)
     kapt(libs.androidx.hilt.compiler)
+
+    implementation(libs.square.retrofit)
+    implementation(libs.square.retrofit.gson.converter)
+
     testImplementation(libs.junit)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
