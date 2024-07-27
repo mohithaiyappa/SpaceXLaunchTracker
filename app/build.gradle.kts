@@ -1,6 +1,9 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ktlint)
 }
 
 android {
@@ -32,6 +35,23 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+}
+
+tasks.getByPath("preBuild").dependsOn("ktlintFormat")
+
+ktlint {
+    android = true
+    ignoreFailures = false
+    additionalEditorconfig.set(
+        mapOf(
+            "ktlint_standard_no-wildcard-imports" to "disabled",
+            "ktlint_standard_function-naming" to "disabled",
+        ),
+    )
+    reporters {
+        reporter(ReporterType.PLAIN)
+        reporter(ReporterType.CHECKSTYLE)
     }
 }
 
