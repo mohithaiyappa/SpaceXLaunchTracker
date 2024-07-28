@@ -1,4 +1,4 @@
-package tk.mohithaiyappa.spacexlaunchtracker
+package tk.mohithaiyappa.spacexlaunchtracker.ui
 
 import android.graphics.Color
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import dagger.hilt.android.AndroidEntryPoint
+import tk.mohithaiyappa.spacexlaunchtracker.R
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
