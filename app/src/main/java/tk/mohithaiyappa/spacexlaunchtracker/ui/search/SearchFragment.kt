@@ -5,9 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import tk.mohithaiyappa.spacexlaunchtracker.R
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import tk.mohithaiyappa.spacexlaunchtracker.databinding.FragmentSearchBinding
+import tk.mohithaiyappa.spacexlaunchtracker.ui.MainViewModel
+import tk.mohithaiyappa.spacexlaunchtracker.util.adapters.LaunchItemAdapter
+import tk.mohithaiyappa.spacexlaunchtracker.util.textChanges
 
 class SearchFragment : Fragment() {
+    private var binding: FragmentSearchBinding? = null
+    private val viewModel: MainViewModel by activityViewModels()
+    private var adapter: LaunchItemAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -17,6 +29,33 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        binding = FragmentSearchBinding.inflate(layoutInflater)
+        return binding?.root
+    }
+
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
+        super.onViewCreated(view, savedInstanceState)
+        binding?.apply {
+            adapter = LaunchItemAdapter()
+            rvSearchList.layoutManager = LinearLayoutManager(requireContext())
+            rvSearchList.adapter = adapter
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                tieSearch.textChanges().collectLatest {
+                    viewModel.searchLaunches("%$it%")
+                        .collectLatest {
+                            adapter?.submitList(it)
+                        }
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
     }
 }

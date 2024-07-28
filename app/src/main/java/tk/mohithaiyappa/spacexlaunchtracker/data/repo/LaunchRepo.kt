@@ -35,4 +35,10 @@ class LaunchRepo
                 launchDao.getAllLaunches()
             }
         }
+
+        suspend fun search(query: String): Flow<List<LaunchEntity>> {
+            return withContext(Dispatchers.IO) {
+                launchDao.searchLaunches(query)
+            }
+        }
     }

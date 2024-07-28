@@ -17,4 +17,7 @@ interface LaunchDao {
 
     @Delete
     fun deleteLaunch(launch: LaunchEntity)
+
+    @Query("SELECT * FROM launch WHERE missionName LIKE :query OR launchYear LIKE :query OR rocketName LIKE :query")
+    fun searchLaunches(query: String): Flow<List<LaunchEntity>>
 }
