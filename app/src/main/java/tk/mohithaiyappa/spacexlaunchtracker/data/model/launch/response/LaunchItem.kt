@@ -1,6 +1,7 @@
 package tk.mohithaiyappa.spacexlaunchtracker.data.model.launch.response
 
 import com.google.gson.annotations.SerializedName
+import tk.mohithaiyappa.spacexlaunchtracker.data.room.entity.LaunchEntity
 
 data class LaunchItem(
     @SerializedName("crew")
@@ -65,4 +66,13 @@ data class LaunchItem(
     val timeline: Timeline?,
     @SerializedName("upcoming")
     val upcoming: Boolean?,
-)
+) {
+    fun toLaunchEntity(): LaunchEntity {
+        return LaunchEntity(
+            flightNumber = this.flightNumber ?: 0,
+            missionName = this.missionName ?: "",
+            launchYear = this.launchYear ?: "",
+            rocketName = this.rocket?.rocketName ?: "",
+        )
+    }
+}

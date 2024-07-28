@@ -16,7 +16,7 @@ class MainViewModel
     ) : ViewModel() {
         fun syncLaunches() {
             viewModelScope.launch {
-                val result = launchRepo.getLaunches()
+                val result = launchRepo.syncLaunches()
                 when (result) {
                     is NetworkResponse.Success -> {
                     }
