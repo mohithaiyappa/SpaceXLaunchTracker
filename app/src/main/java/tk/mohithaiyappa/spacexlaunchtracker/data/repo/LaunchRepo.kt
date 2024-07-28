@@ -4,7 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import tk.mohithaiyappa.spacexlaunchtracker.data.model.launch.response.LaunchItem
 import tk.mohithaiyappa.spacexlaunchtracker.data.source.remote.LaunchService
-import tk.mohithaiyappa.spacexlaunchtracker.util.Result
+import tk.mohithaiyappa.spacexlaunchtracker.util.NetworkResponse
 import javax.inject.Inject
 
 class LaunchRepo
@@ -12,13 +12,13 @@ class LaunchRepo
     constructor(
         private val launchService: LaunchService,
     ) {
-        suspend fun getLaunches(): Result<List<LaunchItem>> {
+        suspend fun getLaunches(): NetworkResponse<List<LaunchItem>> {
             return withContext(Dispatchers.IO) {
                 try {
                     val launches = launchService.getLaunches()
-                    Result.Success(launches)
+                    NetworkResponse.Success(launches)
                 } catch (e: Exception) {
-                    Result.Error(e.message ?: "An unknown error occurred")
+                    NetworkResponse.Failure(e.message ?: "An unknown error occurred")
                 }
             }
         }
