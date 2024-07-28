@@ -73,6 +73,8 @@ data class LaunchItem(
             missionName = this.missionName ?: "",
             launchYear = this.launchYear ?: "",
             rocketName = this.rocket?.rocketName ?: "",
+            missionPatch = this.links?.missionPatch ?: "",
+            missionPatchSmall = this.links?.missionPatchSmall ?: "",
         )
     }
 }

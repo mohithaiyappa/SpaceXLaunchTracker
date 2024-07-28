@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
             storeFragment = StoreFragment()
 
             binding.loadFragment(homeFragment, "homeFragment")
-            viewModel.syncLaunches()
             binding.bnvMainActivity.setOnItemSelectedListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.bnmHome -> {
@@ -68,6 +67,11 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.syncLaunches()
     }
 
     fun ActivityMainBinding.loadFragment(

@@ -25,4 +25,6 @@ class MainViewModel
                 }
             }
         }
+
+        suspend fun getlaunches() = launchRepo.getLaunches()
     }

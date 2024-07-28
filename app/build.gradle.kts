@@ -85,6 +85,9 @@ dependencies {
     implementation(libs.square.retrofit)
     implementation(libs.square.retrofit.gson.converter)
 
+    implementation(libs.glide)
+    implementation(libs.coil)
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)
