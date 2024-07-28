@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bnmHome"
+        android:icon="@drawable/vgr_home_rounded"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/bnmSearch"
+        android:icon="@drawable/vgr_search_rounded"
+        android:title="@string/title_search" />
+
+    <item
+        android:id="@+id/bnmStore"
+        android:icon="@drawable/vgr_store_rounded"
+        android:title="@string/title_store" />
+
+</menu>
