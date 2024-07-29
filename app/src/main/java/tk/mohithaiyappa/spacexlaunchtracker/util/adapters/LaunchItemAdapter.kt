@@ -1,5 +1,7 @@
 package tk.mohithaiyappa.spacexlaunchtracker.util.adapters
 
+import android.text.TextUtils
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -35,6 +37,10 @@ class LaunchItemAdapter() : ListAdapter<LaunchEntity, LaunchItemAdapter.LaunchIt
             tvLaunchYear.text = launchEntity.launchYear
             tvRocketName.text = launchEntity.rocketName
             tvMissionName.text = launchEntity.missionName
+            tvMissionName.movementMethod = LinkMovementMethod.getInstance()
+            tvMissionName.ellipsize = TextUtils.TruncateAt.MARQUEE
+            tvMissionName.isSelected = true
+            tvMissionName.isSingleLine = true
         }
     }
 
