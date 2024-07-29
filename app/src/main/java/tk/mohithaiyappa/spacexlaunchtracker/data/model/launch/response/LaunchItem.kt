@@ -2,6 +2,7 @@ package tk.mohithaiyappa.spacexlaunchtracker.data.model.launch.response
 
 import com.google.gson.annotations.SerializedName
 import tk.mohithaiyappa.spacexlaunchtracker.data.room.entity.LaunchEntity
+import tk.mohithaiyappa.spacexlaunchtracker.util.concatenateStrings
 
 data class LaunchItem(
     @SerializedName("crew")
@@ -75,6 +76,12 @@ data class LaunchItem(
             rocketName = this.rocket?.rocketName ?: "",
             missionPatch = this.links?.missionPatch ?: "",
             missionPatchSmall = this.links?.missionPatchSmall ?: "",
+            rocketType = this.rocket?.rocketType ?: "",
+            payloadDetails =
+                this.rocket?.secondStage?.payloads?.concatenateStrings({ payload ->
+                    return@concatenateStrings "${payload?.payloadType}, ${payload?.orbit}"
+                }) ?: "",
+            launchSite = this.launchSite?.siteName ?: "",
         )
     }
 }

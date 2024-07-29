@@ -21,4 +21,7 @@ interface LaunchDao {
 
     @Query("SELECT * FROM launch WHERE missionName LIKE :query OR launchYear LIKE :query OR rocketName LIKE :query")
     fun searchLaunches(query: String): Flow<List<LaunchEntity>>
+
+    @Query("SELECT * FROM launch WHERE flightNumber = :flightNumber")
+    fun getLaunchByFlightNumber(flightNumber: Int): Flow<LaunchEntity>
 }

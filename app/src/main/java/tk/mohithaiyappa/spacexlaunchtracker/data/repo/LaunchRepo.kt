@@ -41,4 +41,10 @@ class LaunchRepo
                 launchDao.searchLaunches(query)
             }
         }
+
+        suspend fun getLaunch(flightNumber: Int): Flow<LaunchEntity> {
+            return withContext(Dispatchers.IO) {
+                launchDao.getLaunchByFlightNumber(flightNumber)
+            }
+        }
     }

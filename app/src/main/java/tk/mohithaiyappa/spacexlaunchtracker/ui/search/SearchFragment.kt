@@ -10,8 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import tk.mohithaiyappa.spacexlaunchtracker.R
 import tk.mohithaiyappa.spacexlaunchtracker.databinding.FragmentSearchBinding
 import tk.mohithaiyappa.spacexlaunchtracker.ui.MainViewModel
+import tk.mohithaiyappa.spacexlaunchtracker.ui.launchdetail.DetailFragment
 import tk.mohithaiyappa.spacexlaunchtracker.util.adapters.LaunchItemAdapter
 import tk.mohithaiyappa.spacexlaunchtracker.util.textChanges
 
@@ -39,7 +41,17 @@ class SearchFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
-            adapter = LaunchItemAdapter()
+            adapter =
+                LaunchItemAdapter { flightNumber ->
+                    requireActivity().supportFragmentManager.apply {
+                        beginTransaction().apply {
+                            add(R.id.clSearchContainer, DetailFragment.newInstance(flightNumber))
+                            addToBackStack(null)
+                            commit()
+                        }
+                        executePendingTransactions()
+                    }
+                }
             rvSearchList.layoutManager = LinearLayoutManager(requireContext())
             rvSearchList.adapter = adapter
 

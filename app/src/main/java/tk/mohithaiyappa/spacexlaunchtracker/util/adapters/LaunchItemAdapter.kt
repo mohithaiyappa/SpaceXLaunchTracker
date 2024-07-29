@@ -11,7 +11,7 @@ import coil.load
 import tk.mohithaiyappa.spacexlaunchtracker.data.room.entity.LaunchEntity
 import tk.mohithaiyappa.spacexlaunchtracker.databinding.ViewLaunchItemBinding
 
-class LaunchItemAdapter() : ListAdapter<LaunchEntity, LaunchItemAdapter.LaunchItemViewHolder>(callback) {
+class LaunchItemAdapter(val onItemClick: (Int) -> Unit) : ListAdapter<LaunchEntity, LaunchItemAdapter.LaunchItemViewHolder>(callback) {
     class LaunchItemViewHolder(val binding: ViewLaunchItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
@@ -19,7 +19,12 @@ class LaunchItemAdapter() : ListAdapter<LaunchEntity, LaunchItemAdapter.LaunchIt
         viewType: Int,
     ): LaunchItemViewHolder {
         val binding = ViewLaunchItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return LaunchItemViewHolder(binding)
+        return LaunchItemViewHolder(binding).apply {
+            binding.root.setOnClickListener {
+                val flightNumber = getItem(adapterPosition).flightNumber
+                onItemClick(flightNumber)
+            }
+        }
     }
 
     override fun onBindViewHolder(

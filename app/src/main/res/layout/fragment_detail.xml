@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.launchdetail.DetailFragment"
+    android:background="#f4f4f4"
+    android:padding="16dp">
+
+
+
+        <ImageView
+            android:id="@+id/ivMissionPatch"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvMissionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:layout_marginBottom="4dp"
+            tools:text="DemoSat"
+            app:layout_constraintTop_toBottomOf="@id/ivMissionPatch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvLaunchDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#555"
+            android:textAlignment="center"
+            android:layout_marginBottom="16dp"
+            tools:text="12 Jun 2022"
+            app:layout_constraintTop_toBottomOf="@id/tvMissionName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    <!-- Details Section -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLaunchDate"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/tvRocketNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#333"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"
+            android:text="@string/title_rocket_name" />
+
+        <TextView
+            android:id="@+id/tvRocketName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginStart="16dp"
+            android:textColor="#333"
+            android:textStyle="normal"
+            android:layout_marginBottom="4dp"
+            tools:text="Rocket Name" />
+
+        <TextView
+            android:id="@+id/tvRocketTypeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:textColor="#333"
+            android:layout_marginBottom="4dp"
+            android:text="@string/title_rocket_type" />
+
+        <TextView
+            android:id="@+id/tvRocketType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#333"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="4dp"
+            tools:text="Rocket Type" />
+
+        <TextView
+            android:id="@+id/tvPayloadDetailsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#333"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/title_payload_details" />
+
+        <TextView
+            android:id="@+id/tvPayloadDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#333"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="4dp"
+            tools:text="Payload Details" />
+
+        <TextView
+            android:id="@+id/tvLaunchSiteLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#333"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:text="@string/title_launch_site" />
+
+        <TextView
+            android:id="@+id/tvLaunchSite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#333"
+            android:layout_marginStart="16dp"
+            tools:text="Launch Site" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

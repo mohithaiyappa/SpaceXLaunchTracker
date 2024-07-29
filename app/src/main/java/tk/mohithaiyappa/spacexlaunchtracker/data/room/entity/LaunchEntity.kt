@@ -12,4 +12,7 @@ data class LaunchEntity(
     val rocketName: String,
     val missionPatch: String,
     val missionPatchSmall: String,
+    val rocketType: String,
+    val payloadDetails: String,
+    val launchSite: String,
 )

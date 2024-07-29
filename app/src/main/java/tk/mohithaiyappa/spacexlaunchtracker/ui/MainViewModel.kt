@@ -29,4 +29,6 @@ class MainViewModel
         suspend fun getlaunches() = launchRepo.getLaunches()
 
         suspend fun searchLaunches(query: String) = launchRepo.search(query)
+
+        suspend fun getLaunch(flightNumber: Int) = launchRepo.getLaunch(flightNumber)
     }

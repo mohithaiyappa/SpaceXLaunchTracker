@@ -5,4 +5,8 @@
     <string name="title_store">Store</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_rocket_name">Rocket Name</string>
+    <string name="title_rocket_type">Rocket Type</string>
+    <string name="title_launch_site">Launch Site</string>
+    <string name="title_payload_details">Payload Details</string>
 </resources>

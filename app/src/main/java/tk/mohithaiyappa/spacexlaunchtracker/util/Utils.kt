@@ -32,3 +32,10 @@ fun TextInputEditText.textChanges(): Flow<CharSequence?> =
         addTextChangedListener(listener)
         awaitClose { removeTextChangedListener(listener) }
     }
+
+fun <T> List<T>.concatenateStrings(
+    getString: (T) -> String,
+    separator: String = "",
+): String {
+    return joinToString(separator = separator) { getString(it) }
+}

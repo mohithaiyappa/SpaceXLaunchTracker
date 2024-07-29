@@ -10,8 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import tk.mohithaiyappa.spacexlaunchtracker.R
 import tk.mohithaiyappa.spacexlaunchtracker.databinding.FragmentHomeBinding
 import tk.mohithaiyappa.spacexlaunchtracker.ui.MainViewModel
+import tk.mohithaiyappa.spacexlaunchtracker.ui.launchdetail.DetailFragment
 import tk.mohithaiyappa.spacexlaunchtracker.util.adapters.LaunchItemAdapter
 
 class HomeFragment : Fragment() {
@@ -39,7 +41,17 @@ class HomeFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
-            adapter = LaunchItemAdapter()
+            adapter =
+                LaunchItemAdapter { flightNumber ->
+                    requireActivity().supportFragmentManager.apply {
+                        beginTransaction().apply {
+                            add(R.id.flHomeContainer, DetailFragment.newInstance(flightNumber))
+                            addToBackStack(null)
+                            commit()
+                        }
+                        executePendingTransactions()
+                    }
+                }
             rvLaunchesList.layoutManager = LinearLayoutManager(requireContext())
             rvLaunchesList.adapter = adapter
         }
