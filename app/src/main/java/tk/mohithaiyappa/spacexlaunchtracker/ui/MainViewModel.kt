@@ -14,6 +14,9 @@ class MainViewModel
     constructor(
         private val launchRepo: LaunchRepo,
     ) : ViewModel() {
+        var searchQuery = ""
+            private set
+
         fun syncLaunches() {
             viewModelScope.launch {
                 val result = launchRepo.syncLaunches()
@@ -28,7 +31,10 @@ class MainViewModel
 
         suspend fun getlaunches() = launchRepo.getLaunches()
 
-        suspend fun searchLaunches(query: String) = launchRepo.search(query)
+        suspend fun searchLaunches(query: String) =
+            launchRepo.search(query).apply {
+                searchQuery = query
+            }
 
         suspend fun getLaunch(flightNumber: Int) = launchRepo.getLaunch(flightNumber)
     }

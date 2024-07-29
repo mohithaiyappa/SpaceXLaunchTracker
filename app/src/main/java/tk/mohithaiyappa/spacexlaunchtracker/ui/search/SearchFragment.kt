@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 import tk.mohithaiyappa.spacexlaunchtracker.R
 import tk.mohithaiyappa.spacexlaunchtracker.databinding.FragmentSearchBinding
@@ -55,13 +56,18 @@ class SearchFragment : Fragment() {
             rvSearchList.layoutManager = LinearLayoutManager(requireContext())
             rvSearchList.adapter = adapter
 
+            tieSearch.setText(viewModel.searchQuery)
+
             viewLifecycleOwner.lifecycleScope.launch {
-                tieSearch.textChanges().collectLatest {
-                    viewModel.searchLaunches("%$it%")
-                        .collectLatest {
-                            adapter?.submitList(it)
-                        }
-                }
+                tieSearch
+                    .textChanges()
+                    .debounce(300)
+                    .collectLatest {
+                        viewModel.searchLaunches("%$it%")
+                            .collectLatest {
+                                adapter?.submitList(it)
+                            }
+                    }
             }
         }
     }
